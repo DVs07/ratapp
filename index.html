@@ -14,41 +14,40 @@
     <header>
         <nav class="navbar navbar-dark bg-dark border-bottom ">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">ratApp</a>
+                <a class="navbar-brand" href="./index.html">ratApp</a>
+                <button class="btn btn-primary" type="button" aria-hidden="true"><a href="./formulario.html" class="nav-link"> <i class="fa fa-plus-square" aria-hidden="true"></i> Agregar</a></button>
+                    
             </div>
         </nav>
     </header>
-    <main>\
-        <div class="container col-sm-8 col-md-6 bg-dark border rounded">
-            <h3 class="text-center py-3">PRESTAMO</h3>
-            <!-- FORMULARIO DE DEUDORES -->
-            <form id="agregar-gasto" action="#" class="d-flex justify-content-center align-items-center flex-column mb-4">
-                <div class="input-group mb-3 w-65">
-                    <span class="input-group-text"> Nombre</span>
-                    <input type="text" class="form-control" placeholder="Ej: Pablo" aria-label="Username" aria-describedby="basic-addon1" id="nombre-deudor">
-                </div>
-                <div class="input-group mb-3 w-65">
-                    <span class="input-group-text">Apodo </span>
-                    <input type="text" class="form-control" placeholder="Ej: Negro" aria-label="Username" aria-describedby="basic-addon1" id="apellido-deudor">
-                </div>
-                <div class="col-sm-4 input-group mb-3 w-65">
-                    <input class="form-control" type="date" id="fecha" name="fecha"/>
-                    <label for="fecha" class="input-group-text ">Fecha Prestamo</label>
-                </div>
-                <div class="input-group mb-3 col-sm-8 w-65">
-                    <span class="input-group-text" id="deuda">Cantidad</span>
-                    <span class="input-group-text" id="signo">$</span>
-                    <input type="text" class="form-control" placeholder="Ej: 35000" aria-label="Recipient's username" aria-describedby="basic-addon2" id="cantidad">
-                </div>
-                <div class="col-sm-8 d-flex justify-content-center align-items-center w-65 div-btn">
-                    <button class="btn btn-primary border-left-0 w-100" type="submit"><i class="fa fa-chevron-circle-right mr-2" aria-hidden="true"></i>Agregar Deudor</button> 
-                </div>
-                
-            </form>
+    <main>
+        <div class="container mt-5 table-responsive">
+        <table class="table table-color">
+            <thead>
+                <tr class="bg-dark">
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Apodo</th>
+                    <th scope="col">Fecha Prestamo</th>
+                    <th scope="col">Cantidad Prestada</th>
+                    <th scope="col">Pagado</th>
+                    <th scope="col">Resto</th>
+                    <th scope="col">Acciones</th>
+                </tr>
+            </thead>
+            <tbody id="tabla-deudores">
+
+            </table>
+            <div class="text-center">
+                <span> No hay deudores</span>
+            </div>
+            
         </div>
+        
     </main>
     <footer>
 
-        <script src="./js/bootstrap.js"></script>
+        
+    </footer>
+    <script src="./js/bootstrap.js"></script>
 </body>
 </html>

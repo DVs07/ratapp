@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+    <link rel="stylesheet" href="./css/bootstrap.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <title>ratApp</title>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-dark bg-dark border-bottom ">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="./index.html">ratApp</a>
+            </div>
+        </nav>
+    </header>
+    <main>\
+        <div class="container col-sm-8 col-md-6 bg-dark border rounded">
+            <h3 class="text-center py-3">PRESTAMO</h3>
+            <!-- FORMULARIO DE DEUDORES -->
+            <form id="agregar-gasto" action="#" class="d-flex justify-content-center align-items-center flex-column mb-4">
+                <div class="input-group mb-3 w-65">
+                    <span class="input-group-text"> Nombre</span>
+                    <input type="text" class="form-control" placeholder="Ej: Pablo" aria-label="Username" aria-describedby="basic-addon1" id="nombre-deudor">
+                </div>
+                <div class="input-group mb-3 w-65">
+                    <span class="input-group-text">Apodo </span>
+                    <input type="text" class="form-control" placeholder="Ej: Negro" aria-label="Username" aria-describedby="basic-addon1" id="apellido-deudor">
+                </div>
+                <div class="col-sm-4 input-group mb-3 w-65">
+                    <input class="form-control" type="date" id="fecha" name="fecha"/>
+                    <label for="fecha" class="input-group-text ">Fecha Prestamo</label>
+                </div>
+                <div class="input-group mb-3 col-sm-8 w-65">
+                    <span class="input-group-text" id="deuda">Cantidad</span>
+                    <span class="input-group-text" id="signo">$</span>
+                    <input type="text" class="form-control" placeholder="Ej: 35000" aria-label="Recipient's username" aria-describedby="basic-addon2" id="cantidad">
+                </div>
+                <div class="col-sm-8 d-flex justify-content-center align-items-center w-65 div-btn">
+                    <button class="btn btn-primary border-left-0 w-100" type="submit" id="btn-agregar"><i class="fa fa-plus me-2" aria-hidden="true"></i>AGREGAR</button> 
+                </div>
+                
+            </form>
+        </div>
+    </main>
+    <footer>
+
+    </footer>
+    <script src="./js/bootstrap.js"></script>
+    <script src="./js/app.js"></script>
+</body>
+</html>

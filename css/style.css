@@ -1,3 +1,13 @@
+:root{
+    --body-bg: #1e1f27;
+    --bg-orange: #FE9920;
+    --bg-pumkin: #FA7921;
+    --bg-placeholder: #939393;
+    --bg-charcoal: #364156;
+    --bg-prusian-blue: #212D40;
+    --bg-rich-black: #11151C;
+    --bg-white: #FFFFFF;
+}
 body{
     background-color: #1e1f27;
 }
@@ -14,25 +24,26 @@ button{
     color: white !important;
     border-color: #512BDA !important; */
     /* 1er color */
-    background-color: #FE9920 !important;
+    background-color: var(--bg-orange) !important;
     color: white !important;
-    border-color: #FE9920 !important;
+    border-color: var(--bg-orange)!important;
 }
 button:hover{
-    background-color: #FA7921!important;
+    background-color: var(--bg-pumkin)!important;
     color: white !important;
-    border-color: #FA7921  !important;
+    border-color: var(--bg-pumkin)  !important;
 }
 #signo{
     background-color: white !important;
     border-color: white !important;
-    color: #939393 !important;
+    color: var(--bg-placeholder) !important;
 }
 input::placeholder{
-    color: #939393 !important;
+    color: var(--bg-placeholder) !important;
 }
-.text-center{
-    text-align: center !important;
+.table-color > td,th{
+    background-color: var(--bg-prusian-blue) !important;
+    color: white !important;
 }
 .w-10{
     width: 10% !important;
