@@ -20,9 +20,9 @@
     </header>
     <main>\
         <div class="container col-sm-8 col-md-6 bg-dark border rounded">
-            <h3 class="text-center py-3">PRESTAMO</h3>
+            <h3 class="text-center py-3">DEUDOR</h3>
             <!-- FORMULARIO DE DEUDORES -->
-            <form id="agregar-gasto" action="#" class="d-flex justify-content-center align-items-center flex-column mb-4">
+            <form id="formulario-deudor" action="#" class="d-flex justify-content-center align-items-center flex-column mb-4">
                 <div class="input-group mb-3 w-65">
                     <span class="input-group-text"> Nombre</span>
                     <input type="text" class="form-control" placeholder="Ej: Pablo" aria-label="Username" aria-describedby="basic-addon1" id="nombre-deudor">
@@ -36,9 +36,14 @@
                     <label for="fecha" class="input-group-text ">Fecha Prestamo</label>
                 </div>
                 <div class="input-group mb-3 col-sm-8 w-65">
-                    <span class="input-group-text" id="deuda">Cantidad</span>
+                    <span class="input-group-text" id="deuda">Prestamo</span>
                     <span class="input-group-text" id="signo">$</span>
                     <input type="text" class="form-control" placeholder="Ej: 35000" aria-label="Recipient's username" aria-describedby="basic-addon2" id="cantidad">
+                </div>
+                <div class="input-group mb-3 col-sm-8 w-65">
+                    <span class="input-group-text" id="deuda">Pagado</span>
+                    <span class="input-group-text" id="signo">$</span>
+                    <input type="text" class="form-control" placeholder="Ej: 20000" aria-label="Recipient's username" aria-describedby="basic-addon2" id="pagado">
                 </div>
                 <div class="col-sm-8 d-flex justify-content-center align-items-center w-65 div-btn">
                     <button class="btn btn-primary border-left-0 w-100" type="submit" id="btn-agregar"><i class="fa fa-plus me-2" aria-hidden="true"></i>AGREGAR</button> 
