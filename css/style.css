@@ -19,7 +19,7 @@ span, label{
     color: white !important;
     border-color: #050404 !important;
 }
-button{
+.btn-custom{
     /* background-color:  #512BDA!important;
     color: white !important;
     border-color: #512BDA !important; */
@@ -28,7 +28,7 @@ button{
     color: white !important;
     border-color: var(--bg-orange)!important;
 }
-button:hover{
+.btn-custom:hover{
     background-color: var(--bg-pumkin)!important;
     color: white !important;
     border-color: var(--bg-pumkin)  !important;
