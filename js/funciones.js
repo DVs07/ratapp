@@ -1,16 +1,26 @@
 import { agregarDeudor} from "./formulario.js";
-import { noDeudor } from "./variables.js";
+import { noDeudor, formulario, alerta } from "./variables.js";
 
-export const formulario = document.getElementById('formulario-deudor');
+
 
 export function eventListeners(){
     const btnAgregar = document.getElementById('btn-agregar');
     if(btnAgregar){
         btnAgregar.addEventListener('click', agregarDeudor);
     }
+
+    document.getElementById('tabla-deudores').addEventListener('click', function (e) {
+        // Verificar si se hizo clic en el botón de eliminar
+        const botonEliminar = e.target.closest('.btn-danger'); // Encuentra el botón más cercano con la clase 'btn-danger'
+        
+        if (botonEliminar) {
+            const id = parseInt(botonEliminar.getAttribute('data-id')); // Obtener el ID
+            eliminarDeudor(id);
+            mostrarDeudores();  
+        }
+    });
 }
 export function mostrarAlerta(mensaje, tipo){
-    const alerta = document.createElement('div');
     
     alerta.classList.add('text-center', 'alert', 'alert-danger', 'mt-4');
     alerta.textContent = mensaje;
@@ -33,11 +43,17 @@ export function limpiarHtml(elemento){
 }
 
 
-export function mostrarDeudores(deudores){
+export function mostrarDeudores(){
     const tablaDeudores = document.getElementById('tabla-deudores');
-    deudores.forEach(deudor => {
-        const { nombre, apodo, fecha, cantidad, pagado } = deudor;
+
+    const arrayDeudores = obtenerDeudores();
+    tablaDeudores.innerHTML = '';
+
+    arrayDeudores.forEach(deudor => {
+        
+    const { id,nombre, apodo, fecha, cantidad, pagado } = deudor;
     const nuevoDeudor = document.createElement('tr');
+
     nuevoDeudor.innerHTML = `
         <td>${nombre}</td>
         <td>${apodo}</td>
@@ -45,9 +61,8 @@ export function mostrarDeudores(deudores){
         <td>${cantidad}</td>
         <td>${pagado}</td>
         <td>${calcularResto(deudor)}</td>
-        <td><button class="btn btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i>
-Eliminar</button> <button class="btn btn-success"><i class="fa fa-pencil me-2" aria-hidden="true"></i>Editar</button></td>
-
+        <td><button class="btn btn-success me-2"><i class="fa fa-pencil me-2" aria-hidden="true"></i>Editar</button><button class="btn btn-danger"  data-id="${id}"><i class="fa fa-trash-o" aria-hidden="true"></i>
+    Eliminar</button></td>
     `;
     if(tablaDeudores){
         tablaDeudores.appendChild(nuevoDeudor);
@@ -77,4 +92,17 @@ export function calcularResto(deudor){
     const { cantidad, pagado } = deudor;
     const resto = cantidad - pagado;
     return resto;
+}
+
+export function eliminarDeudor(id){
+    let deudores = obtenerDeudores();
+
+     // Filtrar para excluir el deudor con el ID seleccionado
+    deudores = deudores.filter(deudor => deudor.id !== id);
+
+     // Guardar la nueva lista en localStorage
+    localStorage.setItem('deudores', JSON.stringify(deudores));
+
+     // Volver a renderizar la tabla
+    mostrarDeudores();
 }
