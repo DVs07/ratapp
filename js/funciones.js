@@ -1,5 +1,5 @@
 import { agregarDeudor} from "./formulario.js";
-import { noDeudor, formulario, alerta } from "./variables.js";
+import { noDeudor, formulario, alerta, cardDeudores } from "./variables.js";
 
 
 
@@ -9,6 +9,8 @@ export function eventListeners(){
         btnAgregar.addEventListener('click', agregarDeudor);
     }
 
+    const tablaDeudores = document.getElementById('tabla-deudores');
+    if(tablaDeudores){
     document.getElementById('tabla-deudores').addEventListener('click', function (e) {
         // Verificar si se hizo clic en el botón de eliminar
         const botonEliminar = e.target.closest('.btn-danger'); // Encuentra el botón más cercano con la clase 'btn-danger'
@@ -19,6 +21,8 @@ export function eventListeners(){
             mostrarDeudores();  
         }
     });
+    mostrarDeudores();
+    }
 }
 export function mostrarAlerta(mensaje, tipo){
     
@@ -53,23 +57,71 @@ export function mostrarDeudores(){
         
     const { id,nombre, apodo, fecha, cantidad, pagado } = deudor;
     const nuevoDeudor = document.createElement('tr');
+    const tdNombre = document.createElement('td');
+    const tdApodo = document.createElement('td');
+    const tdFecha = document.createElement('td');
+    const tdCantidad = document.createElement('td');
+    const tdPagado = document.createElement('td');
+    const tdResto = document.createElement('td');
+    const tdAcciones = document.createElement('td');
 
-    nuevoDeudor.innerHTML = `
-        <td>${nombre}</td>
-        <td>${apodo}</td>
-        <td>${fecha}</td>
-        <td>${cantidad}</td>
-        <td>${pagado}</td>
-        <td>${calcularResto(deudor)}</td>
-        <td><button class="btn btn-success me-2"><i class="fa fa-pencil me-2" aria-hidden="true"></i>Editar</button><button class="btn btn-danger"  data-id="${id}"><i class="fa fa-trash-o" aria-hidden="true"></i>
-    Eliminar</button></td>
-    `;
+    tdNombre.textContent = nombre;
+    tdApodo.textContent = apodo;
+    tdFecha.textContent = fecha;
+    tdCantidad.textContent = cantidad;
+    tdPagado.textContent = pagado;
+    
+    const resto = calcularResto(deudor);
+
+    tdResto.textContent = resto;
+
+    // Boton para editar
+    const btnEditar = document.createElement('button');
+    btnEditar.classList.add('btn', 'btn-primary', 'me-2');
+    btnEditar.innerHTML = `<i class="fa fa-pencil-square-o me-2" aria-hidden="true"></i>Editar`;
+    
+    // Boton para eliminar
+    const btnEliminar = document.createElement('button');
+    btnEliminar.classList.add('btn', 'btn-danger');
+    btnEliminar.innerHTML = `<i class="fa fa-trash-o" aria-hidden="true"></i>
+    Eliminar`;
+    btnEliminar.setAttribute('data-id', id);
+
+    // Boton para informe
+    const btnInforme = document.createElement('button');
+    btnInforme.classList.add('btn', 'btn-dark', 'border', 'me-2');
+    btnInforme.innerHTML = `<i class="fa fa-file-text-o me-2 " aria-hidden="true"></i>Informe`;
+
+    tdAcciones.appendChild(btnInforme);
+    tdAcciones.appendChild(btnEditar);
+    tdAcciones.appendChild(btnEliminar);
+    
+    nuevoDeudor.appendChild(tdNombre);
+    nuevoDeudor.appendChild(tdApodo);
+    nuevoDeudor.appendChild(tdFecha);
+    nuevoDeudor.appendChild(tdCantidad);
+    nuevoDeudor.appendChild(tdPagado);
+    nuevoDeudor.appendChild(tdResto);
+    nuevoDeudor.appendChild(tdAcciones);
+    
     if(tablaDeudores){
         tablaDeudores.appendChild(nuevoDeudor);
+        let porciento = 0;
+
+        porciento = (resto / cantidad) * 100;
+
+        if(porciento < 40){
+            tdResto.classList.add('text-danger');
+        }else if(porciento >= 40 && porciento < 60){
+            tdResto.classList.add('text-warning');
+        }else if(porciento >= 60){
+            tdResto.classList.add('text-success');
+        }
         ocultarDiv();
         }
-    })
     
+    })
+
 }
 
 export function obtenerDeudores(){
@@ -88,10 +140,16 @@ export function ocultarDiv(){
     }
 }
 
+export function mostrarDiv(){
+    let deudores = obtenerDeudores();
+    if(deudores.length === 0){
+        noDeudor.style.display = 'block';
+    }
+}
+
 export function calcularResto(deudor){
     const { cantidad, pagado } = deudor;
-    const resto = cantidad - pagado;
-    return resto;
+        return (parseInt(cantidad) - parseInt(pagado));
 }
 
 export function eliminarDeudor(id){
@@ -104,5 +162,28 @@ export function eliminarDeudor(id){
     localStorage.setItem('deudores', JSON.stringify(deudores));
 
      // Volver a renderizar la tabla
+    mostrarDiv();
     mostrarDeudores();
+}
+
+export function mostrarCards() {
+    const deudores = obtenerDeudores();
+
+    deudores.forEach(deudor => {
+        const cardDeudor = document.createElement('div');
+        cardDeudor.classList.add('col-sm-3', 'mb-3', 'mb-sm-0', 'mt-3');
+        cardDeudor.innerHTML = `
+            <div class="card text-bg-dark">
+                <div class="card-body">
+                    <h5 class="card-title">${deudor.nombre}</h5>
+                    <p class="card-text">${deudor.cantidad}</p>
+                    <a href="#" class="btn btn-info w-100">Ver más</a>
+                </div>
+            </div>
+        `;
+            if(cardDeudores){
+                cardDeudores.appendChild(cardDeudor); 
+            }
+            
+    });
 }

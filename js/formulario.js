@@ -32,7 +32,7 @@ if (!validarDeudor()) {
     // Guardar la lista actualizada en localStorage
     localStorage.setItem('deudores', JSON.stringify(deudores));
 
-    window.location.href = 'index.html';
+    window.location.href = 'deudores.html';
 }
 
 export function validarDeudor(){

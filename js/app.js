@@ -1,6 +1,6 @@
-import { eventListeners, obtenerDeudores, mostrarDeudores } from "./funciones.js";
+import { eventListeners, mostrarCards } from "./funciones.js";
 
 document.addEventListener('DOMContentLoaded', () => {
     eventListeners();
-    mostrarDeudores();
+    mostrarCards();
 })
