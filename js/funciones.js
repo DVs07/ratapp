@@ -91,6 +91,8 @@ export function mostrarDeudores(){
     const btnInforme = document.createElement('button');
     btnInforme.classList.add('btn', 'btn-dark', 'border', 'me-2');
     btnInforme.innerHTML = `<i class="fa fa-file-text-o me-2 " aria-hidden="true"></i>Informe`;
+    btnInforme.setAttribute('data-bs-toggle', 'modal',);
+    btnInforme.setAttribute('data-bs-target', '#staticBackdrop');
 
     tdAcciones.appendChild(btnInforme);
     tdAcciones.appendChild(btnEditar);
