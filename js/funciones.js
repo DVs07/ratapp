@@ -1,5 +1,5 @@
 import { agregarDeudor} from "./formulario.js";
-import { noDeudor, formulario, alerta, cardDeudores } from "./variables.js";
+import { noDeudor, formulario, alerta, cardDeudores, deudorModal } from "./variables.js";
 
 
 
@@ -97,6 +97,10 @@ export function mostrarDeudores(){
     tdAcciones.appendChild(btnInforme);
     tdAcciones.appendChild(btnEditar);
     tdAcciones.appendChild(btnEliminar);
+
+    btnInforme.addEventListener('click', () => {
+        infoModal(id);
+    });
     
     nuevoDeudor.appendChild(tdNombre);
     nuevoDeudor.appendChild(tdApodo);
@@ -113,11 +117,11 @@ export function mostrarDeudores(){
         porciento = (resto / cantidad) * 100;
 
         if(porciento < 40){
-            tdResto.classList.add('text-danger');
+            tdResto.classList.add('text-success');
         }else if(porciento >= 40 && porciento < 60){
             tdResto.classList.add('text-warning');
         }else if(porciento >= 60){
-            tdResto.classList.add('text-success');
+            tdResto.classList.add('text-danger');
         }
         ocultarDiv();
         }
@@ -189,3 +193,15 @@ export function mostrarCards() {
             
     });
 }
+    function infoModal(id){
+            const deudores = obtenerDeudores();
+            const deudor = deudores.find(deudor => deudor.id === id);
+            const { nombre, apodo, fecha, cantidad, pagado } = deudor;
+            deudorModal.innerHTML = `
+                <p>Nombre: ${nombre}</p>
+                <p>Fecha Prestamo: ${fecha}</p>
+                <p>Cantidad Prestada: ${cantidad}</p>
+                <p>Pagado: ${pagado}</p>
+                `;
+        
+    }   

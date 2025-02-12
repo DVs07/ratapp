@@ -12,3 +12,6 @@ export const btnEliminar = document.querySelector('.btn-danger');
 export const alerta = document.createElement('div');
 
 export const cardDeudores = document.querySelector('#cards-deudores');
+
+export const infoDeudores = document.querySelector('#info-deudores');
+export const deudorModal = document.querySelector('#deudor-modal');
