@@ -7,11 +7,9 @@ export const pagado = document.getElementById('pagado');
 
 export const noDeudor = document.querySelector('#sin-deudores');
 
-export const btnEliminar = document.querySelector('.btn-danger');
-
 export const alerta = document.createElement('div');
 
 export const cardDeudores = document.querySelector('#cards-deudores');
 
-export const infoDeudores = document.querySelector('#info-deudores');
+export const btnImprimir = document.querySelector('#btn-imprimir');
 export const deudorModal = document.querySelector('#deudor-modal');

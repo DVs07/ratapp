@@ -1,6 +1,5 @@
 import { agregarDeudor} from "./formulario.js";
-import { noDeudor, formulario, alerta, cardDeudores, deudorModal } from "./variables.js";
-
+import { noDeudor, formulario, alerta, cardDeudores, deudorModal, btnImprimir } from "./variables.js";
 
 
 export function eventListeners(){
@@ -19,10 +18,18 @@ export function eventListeners(){
             const id = parseInt(botonEliminar.getAttribute('data-id')); // Obtener el ID
             eliminarDeudor(id);
             mostrarDeudores();  
-        }
-    });
-    mostrarDeudores();
+            }
+        });
     }
+
+    if(btnImprimir){
+        btnImprimir.addEventListener("click", function () {
+            window.open("pdf.html", "_blank");
+        });
+    }
+    
+    mostrarDeudores();
+
 }
 export function mostrarAlerta(mensaje, tipo){
     
@@ -51,7 +58,7 @@ export function mostrarDeudores(){
     const tablaDeudores = document.getElementById('tabla-deudores');
 
     const arrayDeudores = obtenerDeudores();
-    tablaDeudores.innerHTML = '';
+    // tablaDeudores.innerHTML = '';
 
     arrayDeudores.forEach(deudor => {
         
@@ -196,6 +203,11 @@ export function mostrarCards() {
     function infoModal(id){
             const deudores = obtenerDeudores();
             const deudor = deudores.find(deudor => deudor.id === id);
+
+            if(!deudor){
+                return;
+            }
+            
             const { nombre, apodo, fecha, cantidad, pagado } = deudor;
             deudorModal.innerHTML = `
                 <p>Nombre: ${nombre}</p>
@@ -203,5 +215,28 @@ export function mostrarCards() {
                 <p>Cantidad Prestada: ${cantidad}</p>
                 <p>Pagado: ${pagado}</p>
                 `;
-        
+
+            // Guardar en localStorage
+        localStorage.setItem("deudorPDF", JSON.stringify(deudor));
+
+        console.log("ID guardado:", id);
+            
     }   
+
+    // export function mostrarPDF(id){
+
+    //     const deudores = obtenerDeudores();
+    //     const deudor = deudores.find(deudor => deudor.id === id);
+        
+    //     // deudores.forEach(deudor => {
+    //         const { nombre, apodo, fecha, cantidad, pagado } = deudor;
+
+    //     divPDF.innerHTML = `
+    //     <h1>Informe</h1>
+    //     <p>Nombre: ${nombre}</p>
+    //     <p>Fecha Prestamo: ${fecha}</p>
+    //     <p>Cantidad Prestada: ${cantidad}</p>
+    //     <p>Pagado: ${pagado}</p>
+    //     `;
+    //     // });
+    // }
